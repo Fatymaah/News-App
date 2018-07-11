@@ -1,46 +1,65 @@
 <template>
   <div class="container">
-    <h3>{{ title }}</h3>
-    <form>
-    <textarea placeholder="Add new Task" v-model="newTask"></textarea>
-    <p>{{newTask}}</p>
-    <button type="button" v-on:click="addTask" > Add Task {{tasks.length}} </button>
-    </form>
+  
 
-    <ul>
-    <li v-for="tasks in tasks"> {{tasks}} 
+<div class="content" v-for = "article in news">
 
-    </li>
-    </ul>
-    
+<img :src="article.urlToImage" alt="">
+
+<h3>
+  <strong>{{article.title}}</strong>
+</h3>
+<h4> Author | {{article.author}}</h4>
+
+<p>{{article.description}}</p>
+
+<a class="button" :href="article.url">Read More</a>
+
+
+
+</div>
 
 
    
     
 
   </div>
-  
+
 </template>
 
 <script>
+
+const url ="https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=32af4be0ec3448f5b27b3ac282712df5";
+
+
+import axios from 'axios'
+
+const data = {
+  news:[
+  
+  ]
+  
+}
+
+
 export default {
   data: function() {
-    return {
-      title: 'My First App',
-      click: 0 ,
-      newTask:'SAMPLE',
-      
-      tasks:[
-      
-      ]
-    }
+    return data
+  },
+  created(){
+ this.loadNews();
   },
   methods:{
-    addTask(){
-      this.tasks.unshift(this.newTask);
-      this.newTask = '';
-    
-    }
+    loadNews() {
+ axios.get(url).then(function(response) {
+    console.log(response.data.articles)
+    data.news = response.data.articles
+  }).catch(function(error){
+  consiole.log(error.message)
+  })
+  
+  }
+  
   }
 }
 </script>
