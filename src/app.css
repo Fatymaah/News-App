@@ -49,3 +49,9 @@ img{
 	color: #000;
 	border: 1px solid #ccc;
 }
+.search input{
+	background-color: #fff;
+}
+.search a{
+	background-color: #fff;
+}
