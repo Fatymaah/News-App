@@ -47,7 +47,7 @@ img{
 .button{
 	background-color: #ccc;
 	color: #000;
-	border: 1px solid #ccc;
+	border: 1px solid #000;
 }
 .search input{
 	background-color: #fff;
