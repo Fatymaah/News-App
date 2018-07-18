@@ -7,11 +7,12 @@
     
     <button class="button" href="#" v-on:click="loadNews" type="button">Search</button>
     <p v-if="loading">Loading ...</p>
+    <div class="lds-spinner" v-if="loading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 
 <div class="content" v-for = "article in news">
 
-<img :src="article.urlToImage" alt="">
+<img v-if="article.urlToImage" :src="article.urlToImage" alt="">
 
 <h3>
   <strong>{{article.title}}</strong>
